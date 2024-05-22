@@ -8,7 +8,9 @@ import Cookies from "js-cookie";
 export const apiSlice = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dynamic-expression-production.up.railway.app/",
+    // baseUrl: "https://dynamic-expression-production.up.railway.app/",
+    baseUrl: "http://localhost:8080/",
+
     prepareHeaders: (headers, { getState }) => {
       // console.log(headers, "prepareHeaders");
       // console.log(getState().auth.token);

@@ -27,7 +27,9 @@ console.log(page)
       const nextPage = page + 1; // Increment page here
       console.log(nextPage)
       const res = await fetch(
-        `https://dynamic-expression-production.up.railway.app/cars/mainFilter/${nextPage}`
+        // `https://dynamic-expression-production.up.railway.app/cars/mainFilter/${nextPage}`
+        `http://localhost:8080/cars/mainFilter/${nextPage}`
+
       );
       const data = await res.json();
       console.log(data);

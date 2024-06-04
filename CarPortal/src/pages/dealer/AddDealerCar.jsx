@@ -1,0 +1,623 @@
+import { useState } from "react";
+import Inputs from "../../forms/Inputs";
+import { Textarea } from "@material-tailwind/react";
+// import React from "react";
+import { useCarRegisterMutation } from "../../services/carAPI";
+import { useNavigate, useParams } from "react-router";
+
+const carData = {
+  Kia: ["Sonet", "Seltos", "Carnival"],
+  Volkswagen: ["Polo", "Vento", "Taigun", "Virtus"],
+  Mahindra: [
+    "XUV300",
+    "XUV301",
+    "XUV302",
+    "XUV303",
+    "XUV304",
+    "XUV305",
+    "XUV306",
+    "XUV307",
+    "XUV308",
+    "XUV700",
+    "XUV701",
+    "XUV702",
+    "XUV703",
+    "Thar",
+    "Scorpio",
+    "Bolero",
+    "Marazzo",
+  ],
+  Suzuki: ["Swift", "Baleno", "Vitara Brezza", "Ertiga"],
+  Citroen: ["C3", "C3 Aircross", "eC3", "C5 Aircross"],
+  Tata: [
+    "Tigor",
+    "Altroz",
+    "Harrier",
+    "Safari",
+    "Hexa",
+    "Tigor EV",
+    "Nexon EV",
+    "Punch",
+  ],
+  Maruti: [
+    "Alto K10",
+    "Dzire",
+    "Wagon R",
+    "XL6",
+    "Celerio",
+    "Jimny",
+    "Ignis",
+    "Eeco",
+    "Invicto",
+    "Ciaz",
+  ],
+  Hyundai: [
+    "Verna",
+    "i20",
+    "Venue",
+    "Creta",
+    "Santro",
+    "Grand i10 Nios",
+    "Aura",
+    "Exter",
+    "Alcazar",
+  ],
+  Honda: ["City", "Amaze", "WR-V"],
+  BMW: ["3 Series", "5 Series", "X1", "X3", "X5", "7 Series", "X7"],
+  Others: [],
+};
+
+export default function AddDealerCar() {
+  const [carRegister] = useCarRegisterMutation();
+  //  const [mult, setMult] = React.useState([]);
+  const [formData, setFormData] = useState({
+    //features
+    acFeature: false,
+    musicFeature: false,
+    powerWindowFeature: false,
+    rearParkingCameraFeature: false,
+
+    // fields
+    brand: "",
+    bodyType: "",
+    price: "",
+    model: "",
+    year: "",
+    transmission: "",
+    color: "",
+    city: "",
+    fuelType: "",
+    kmDriven: "",
+    carInsurance: "",
+    registration: "",
+    description: "",
+    safetyDescription: "",
+    area: "",
+    carStatus: "Active",
+    noOfWheels: "",
+    ownerSerial: "",
+    tyre: "",
+    dealer_id: "",
+  });
+  const { id } = useParams();
+  console.log(id);
+  const navigate = useNavigate();
+  const date = new Date(); // Create a new Date object with the current date
+  const year = date.getFullYear(); // Get the year (e.g., 2024)
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Get the month (0-indexed, so add 1), pad with leading zero if needed
+  const day = String(date.getDate()).padStart(2, "0"); // Get the day of the month, pad with leading zero if needed
+
+  const formattedDate = `${year}-${month}-${day}`;
+ 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Prepare the form data to send to the backend
+    const data = {
+      acFeature: formData.acFeature,
+
+      musicFeature: formData.musicFeature,
+
+      area: formData.area,
+
+      bodyType: formData.bodyType,
+
+      brand: formData.brand,
+
+      carInsurance: formData.carInsurance,
+
+      carStatus: "ACTIVE",
+
+      city: formData.city,
+
+      color: formData.color,
+
+      description: formData.description,
+
+      fuelType: formData.fuelType,
+
+      kmDriven: formData.kmDriven,
+
+      model: formData.model,
+
+      noOfWheels: formData.noOfWheels,
+
+      ownerSerial: formData.ownerSerial,
+
+      powerWindowFeature: formData.powerWindowFeature,
+
+      price: formData.price,
+
+      rearParkingCameraFeature: formData.rearParkingCameraFeature,
+
+      registration: formData.registration,
+
+      safetyDescription: formData.safetyDescription,
+
+      transmission: formData.transmission,
+
+      tyre: formData.tyre,
+
+      year: formData.year,
+
+      dealer_id: id,
+
+      date: formattedDate,
+    };
+
+    const res = await carRegister(data);
+
+    if (res?.data?.status === "success") {
+      alert("car added");
+      navigate(`/dealer/${id}/uploadimage`);
+    }
+  };
+
+  //Two field Brands and Model
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [modelOptions, setModelOptions] = useState([]);
+
+  const handleBrandChange = (event) => {
+    const brand = event.target.value;
+    setSelectedBrand(brand);
+    setModelOptions(carData[brand] || []);
+    setFormData({
+      ...formData,
+      brand,
+      model: "", // Reset model when brand changes
+    });
+  };
+  //End Brands and Model
+
+  const handleModelChange = (event) => {
+    const model = event.target.value;
+    setFormData({
+      ...formData,
+      model,
+    });
+  };
+
+  return (
+    <div className="flex justify-center">
+      <div>
+        <form onSubmit={handleSubmit} className="w-[50rem]">
+          <div className="flex justify-center">
+            <p className="text-3xl font-semibold m-4">Add Dealer Car</p>
+          </div>
+          {/* first part */}
+          <div className="flex gap-2">
+            <div className="mt-5 w-full">
+             
+              <select
+                required
+                className="w-full border-2 border-gray-400 p-2 rounded-md"
+                value={selectedBrand}
+                onChange={handleBrandChange}
+              >
+                <option value="">Brands</option>
+                {Object.keys(carData).map((brand) => (
+                  <option key={brand} value={brand}>
+                    {brand}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mt-5 w-full">
+              
+              <select
+                required
+                className="w-full border-2 border-gray-400 p-2 rounded-md"
+                value={formData.model}
+                onChange={handleModelChange}
+                disabled={!selectedBrand}
+              >
+                <option value="">Models</option>
+                {modelOptions.map((model) => (
+                  <option key={model} value={model}>
+                    {model}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* second part */}
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <Inputs
+                label={"price"}
+                type={"number"}
+                name={"price"}
+                value={formData.price}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    price: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+            <div className="mt-5 ml-2 w-full">
+              <Inputs
+                label={"year"}
+                type={"number"}
+                name={"year"}
+                value={formData.year}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    year: event.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          {/* third part */}
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <select
+                required
+                className="w-full border-2 border-gray-400 p-2 rounded-md"
+                name="transmission"
+                value={formData.transmission}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    transmission: event.target.value,
+                  });
+                }}
+              >
+                <option>Transmission</option>
+                <option>Automatic</option>
+                <option>Manual</option>
+              </select>
+            </div>
+
+            <div className="mt-5 ml-2 w-full">
+              <select
+                className="w-full border-2 border-gray-400 p-2 rounded-md"
+                name="bodyType"
+                required
+                value={formData.bodyType}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    bodyType: event.target.value,
+                  });
+                }}
+              >
+                <option>Body Type</option>
+                <option>Sedan</option>
+                <option>Hatchback</option>
+                <option>SUV</option>
+                <option>MUV</option>
+                <option>Coupe</option>
+                <option>Convertibles</option>
+                <option>Pickup Trucks</option>
+              </select>
+            </div>
+          </div>
+
+          {/* fourth part */}
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <Inputs
+                label={"Color"}
+                type={"text"}
+                name={"color"}
+                value={formData.color}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    color: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+            <div className="mt-5 ml-2 w-full">
+              <Inputs
+                label={"Owner Serial"}
+                type={"number"}
+                name={"ownerSerial"}
+                value={formData.type}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    ownerSerial: event.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          {/* fifth part */}
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <Inputs
+                label={"Registration"}
+                type={"text"}
+                name={"registration"}
+                value={formData.registration}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    registration: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+            <div className="mt-5 ml-2 w-full">
+              <select
+                required
+                className="w-full border-2 border-gray-400 p-2 rounded-md"
+                name="msalary"
+                value={formData.carInsurance}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    carInsurance: event.target.value,
+                  });
+                }}
+              >
+                <option>Car Insurance</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+            </div>
+          </div>
+
+          {/* sixth part */}
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <Inputs
+                label={"Km Driven"}
+                type={"number"}
+                name={"kmDriven"}
+                value={formData.kmDriven}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    kmDriven: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+            <div className="mt-5 ml-2 w-full">
+              <select
+                required
+                className="w-full border-2 border-gray-400 p-2 rounded-md"
+                name="fuelType"
+                value={formData.fuelType}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    fuelType: event.target.value,
+                  });
+                }}
+              >
+                <option>Fuel Type</option>
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>Electric</option>
+                <option>Bio-Fuel</option>
+              </select>
+            </div>
+          </div>
+
+          {/* seventh part */}
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <Inputs
+                label={"No Of Wheels"}
+                type={"number"}
+                name={"noOfWheels"}
+                value={formData.noOfWheels}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    noOfWheels: event.target.value,
+                  })
+                }
+              />
+            </div>
+
+            <div className="mt-5 ml-2 w-full">
+              <Inputs
+                label={"Tyre"}
+                type={"text"}
+                name={"tyre"}
+                value={formData.tyre}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    tyre: event.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          {/* eight part */}
+
+          <div className="flex">
+            <div className="mt-5 w-full">
+              <Inputs
+                label={"City"}
+                type={"text"}
+                name={"city"}
+                value={formData.city}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    city: event.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="mt-5 ml-2 w-full">
+              <Inputs
+                label={"Area"}
+                type={"text"}
+                name={"area"}
+                value={formData.area}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    area: event.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          {/* ninth part */}
+          <div className="flex">
+            <div className="mt-5 ml-5">
+              <input
+                label={"Music Feature"}
+                type={"checkbox"}
+                name={"musicFeature"}
+                value={formData.musicFeature}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    musicFeature: event.target.value,
+                  })
+                }
+              />{" "}
+              Music
+            </div>
+
+            <div className="mt-5 ml-5">
+              <input
+                label={"Power Window Feature"}
+                type={"checkbox"}
+                name={"powerWindowFeature"}
+                value={formData.powerWindowFeature}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    powerWindowFeature: event.target.value,
+                  })
+                }
+              />{" "}
+              Power Windows
+            </div>
+
+            <div className="mt-5 ml-5">
+              <input
+                label={"Ac Feature"}
+                type={"checkbox"}
+                name={"acFeature"}
+                value={formData.acFeature}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    acFeature: event.target.value,
+                  })
+                }
+              />{" "}
+              Air Conditioning
+            </div>
+
+            <div className="mt-5 ml-5">
+              <input
+                label={"Rear Parking Camera Feature"}
+                type={"checkbox"}
+                name={"rearParkingCameraFeature"}
+                value={formData.rearParkingCameraFeature}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    rearParkingCameraFeature: event.target.value,
+                  })
+                }
+              />{" "}
+              Rear Parking Camera
+            </div>
+          </div>
+
+          {/* tenth part */}
+
+    
+
+          {/* eleventh part */}
+
+          <div className="mt-5">
+            <h4>Vehicle Description</h4>
+            <div className="formrow">
+              <Textarea
+                required
+                className="form-control"
+                name="description"
+                placeholder="Vehicle Description"
+                value={formData.description}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    description: event.target.value,
+                  });
+                }}
+              ></Textarea>
+            </div>
+          </div>
+          {/* twelth part */}
+
+          <div className="mt-5">
+            <h4>Safety Description</h4>
+            <div className="formrow">
+              <Textarea
+                required
+                className="form-control"
+                name="safetyDescription"
+                placeholder="Safety Description"
+                value={formData.safetyDescription}
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    safetyDescription: event.target.value,
+                  });
+                }}
+              ></Textarea>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="p-3 bg-indigo-400 rounded-md w-28 text-white"
+            value="Add  Car"
+          >
+            {" "}
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

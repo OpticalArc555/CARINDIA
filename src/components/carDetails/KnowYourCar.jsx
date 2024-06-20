@@ -39,7 +39,7 @@ const KnowYourCar = ({
       </p>
       <CardUi>
         <div className="w-3/4 h-max md:w-full">
-          <div className="md:flex md:justify-between">
+          <div className="md:flex md:justify-between pl-4 align-middle items-center">
             <div className="flex items-center gap-6 md:mr-6">
               <div className="bg-blue-50 py-3 md:px-2 rounded-xl">
                 <IoLogoModelS className="w-12 h-8" />
@@ -67,7 +67,7 @@ const KnowYourCar = ({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-6 mt-11">
+          <div className="flex items-center gap-6 mt-11 pl-4">
             <div className="bg-blue-50 py-3 px-2 rounded-xl">
               <MdOutlineAirlineSeatReclineExtra className="w-12 h-8" />
             </div>

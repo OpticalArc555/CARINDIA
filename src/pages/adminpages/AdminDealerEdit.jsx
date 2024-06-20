@@ -11,6 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 const AdminDealerEdit = () => {
   const { userid, id } = useParams();
+  const navigate1 = useNavigate();
   const { data: dealerID } = useGetDealerQuery(id);
   console.log(dealerID);
   console.log(userid);
@@ -157,13 +158,20 @@ const navigate = useNavigate()
             name={"area"}
           />
         </div>
-        <div className="mt-5 ml-2">
+        <div className="mt-5 ml-2 space-x-4">
           <Button
             onClick={onSubmitHandler}
             type="submit"
             className="py-2 px-2 bg-indigo-600 text-white"
           >
             Submit
+          </Button>
+          <Button
+            onClick={() => navigate1 (-1) }
+            type="submit"
+            className="py-2 px-2 bg-gray-800 text-white"
+          >
+            Cancel
           </Button>
         </div>
       </forms>

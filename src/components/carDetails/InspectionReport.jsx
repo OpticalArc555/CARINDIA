@@ -49,8 +49,8 @@ const InspectionReport = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-5 md:w-full w-3/4">
-          <div className="mt-2">
+        <div className="flex flex-col mt-5 md:w-full w-full p-1">
+          <div className="mt-5">
             <CardUi>
               <div className="flex justify-between w-full align-middle items-center">
                 <div className="flex">
@@ -67,14 +67,14 @@ const InspectionReport = () => {
                   />
                 </div>
               </div>
-              <div className="mt-4 px-4 font-[latto] text-lg">
+              <div className="mt-4 px-4 font-[latto] text-lg p-2">
                 {" "}
                 Minor cosmetic imperfection are not repared as they do not
                 affect performance, and educe the cost of ownership
               </div>
             </CardUi>
           </div>
-          <div className="mt-2"></div>
+          <div className="mt-5"></div>
           <CardUi>
             <div className="flex justify-between w-full align-middle items-center">
               <div className="flex">
@@ -91,13 +91,13 @@ const InspectionReport = () => {
                 />
               </div>
             </div>
-            <div className="mt-4 px-4 font-[latto] text-lg">
+            <div className="mt-4 px-4 font-[latto] text-lg p-2">
               {" "}
               Minor cosmetic imperfection are not repared as they do not affect
               performance, and educe the cost of ownership
             </div>
           </CardUi>
-          <div className="mt-2"></div>
+          <div className="mt-5"></div>
           <CardUi>
             <div className="flex justify-between w-full align-middle items-center">
               <div className="flex">
@@ -114,13 +114,13 @@ const InspectionReport = () => {
                 />
               </div>
             </div>
-            <div className="mt-4 px-4 font-[latto] text-lg">
+            <div className="mt-4 px-4 font-[latto] text-lg p-2">
               {" "}
               Minor cosmetic imperfection are not repared as they do not affect
               performance, and educe the cost of ownership
             </div>
           </CardUi>
-          <div className="mt-2"></div>
+          <div className="mt-5"></div>
           <CardUi>
             <div className="flex justify-between w-full align-middle items-center">
               <div className="flex">
@@ -137,7 +137,7 @@ const InspectionReport = () => {
                 />
               </div>
             </div>
-            <div className="mt-4 px-4 font-[latto] text-lg">
+            <div className="mt-4 px-4 font-[latto] text-lg p-2">
               {" "}
               Minor cosmetic imperfection are not repared as they do not affect
               performance, and educe the cost of ownership

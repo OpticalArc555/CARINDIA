@@ -21,9 +21,9 @@ export function StickyNavbar() {
   if(token){
      jwtDecodes = jwtDecode(token);
   }
-  if(token){
-    console.log(token)
- }
+//   if(token){
+//     console.log(token)
+//  }
   
   const userRole = token ? jwtDecodes?.authorities[0] :null;
   
@@ -58,7 +58,7 @@ export function StickyNavbar() {
           Dealer List
         </Typography>
       </Link>
-      <Link to={"/inspector"}>
+      {/* <Link to={"/inspector"}>
         <Typography
           as="li"
           variant="small"
@@ -67,7 +67,7 @@ export function StickyNavbar() {
         >
           Inspector List
         </Typography>
-      </Link>
+      </Link> */}
 
       
     </>

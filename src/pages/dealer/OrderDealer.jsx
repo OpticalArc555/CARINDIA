@@ -1,24 +1,62 @@
+/* eslint-disable no-unused-vars */
 import { useParams } from "react-router-dom";
 import { useGetAllDealerCompleteBookingQuery } from "../../services/dealerAPI";
 import CardUi from "../../ui/CardUi";
-import { Button } from "@material-tailwind/react";
+import { Button, CardFooter, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 const OrderDealer = () => {
   const { id } = useParams();
-  console.log(id);
-  const page = 0;
-  const { data, error, isLoading } = useGetAllDealerCompleteBookingQuery({
-    page,
-    id,
-  });
-  console.log(data);
-  console.log(error);
+  
+  const [pageNo , setPageNo] = useState(0)
+  const { data, error, isLoading } = useGetAllDealerCompleteBookingQuery({pageNo,id});
+ 
+  const nextHandler = () => {
+    setPageNo((prePageNo) => {
+      if (error?.status === 404) {
+        console.log("You are on the last page.");
+      }else{
+        return prePageNo + 1;
+      }
+    })
+  }
 
   if(error){
-    return <p>No Data Available</p>
+    return(
+      <div>
+    <p>No Data Available</p>
+
+    <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+    <Typography
+      variant="medium"
+      color="blue-gray"
+      className="font-normal"
+    >
+      Page {pageNo + 1}
+    </Typography>
+    <div className="flex gap-2">
+      <Button
+        variant="outlined"
+        size="sm"
+        disabled={pageNo <= 0}
+        onClick={() => setPageNo((a) => a - 1)}
+      >
+        Previous
+      </Button>
+      <Button
+        variant="outlined"
+        size="sm"
+        onClick={nextHandler}
+        disabled={data?.bookings?.length < 10}
+      >
+        Next
+      </Button>
+    </div>
+  </CardFooter>
+  </div>
+  )
 }
   const renderData = data?.bookings?.map((item, index) => {
-    console.log(item);
     return (
       <div className="w-full flex justify-center mt-5" key={index}>
         <CardUi>
@@ -55,7 +93,37 @@ const OrderDealer = () => {
   if (error) {
     return <p>No Data Available</p>;
   }
-  return <>{renderData}</>;
+  return <>
+  {renderData}
+
+  <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+              <Typography
+                variant="medium"
+                color="blue-gray"
+                className="font-normal"
+              >
+                Page {pageNo + 1}
+              </Typography>
+              <div className="flex gap-2">
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  disabled={pageNo <= 0}
+                  onClick={() => setPageNo((a) => a - 1)}
+                >
+                  Previous
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  onClick={nextHandler}
+                  disabled={data?.list?.length < 10}
+                >
+                  Next
+                </Button>
+              </div>
+            </CardFooter>
+  </>;
 };
 
 export default OrderDealer;

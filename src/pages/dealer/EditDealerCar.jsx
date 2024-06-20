@@ -135,8 +135,7 @@ export default function EditDealerCar() {
     const res = await carUpdate({data,carId});
     console.log(res);
     if(res?.data?.status === 'success'){
-      alert("Car added");
-      navigate(-1)
+      navigate("/editimage", { state: { images: mult } });
     }
     // console.log(data);
     // addCar(data).then((responseData) => {
@@ -568,7 +567,7 @@ export default function EditDealerCar() {
             value="Add  Car"
           >
             {" "}
-            Submit
+            Next
           </button>
         </form>
       </div>

@@ -1,14 +1,25 @@
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import UserCardPendingRequest from "../components/userRequest/UserCardPendingRequest";
 import { useUserAllCarRequestQuery } from "../services/carAPI";
 import { useParams } from "react-router-dom";
+import { Button, CardFooter, Typography } from "@material-tailwind/react";
 const PendingRequest = () => {
   const {userid} = useParams()
-  const page = 0;
-  console.log(userid)
-  const { data, isLoading, error } = useUserAllCarRequestQuery({page,userid});
-  console.log(data?.list);
+  const [pageNo , setPageNo] = useState(0)
+  
+  const { data, isLoading, error } = useUserAllCarRequestQuery({pageNo,userid});
+  const nextHandler = () => {
+    setPageNo((prePageNo) => {
+      if (error?.status === 404) {
+        console.log("You are on the last page.");
+      }else{
+        return prePageNo + 1;
+      }
+    })
+  }
   const renderData = data?.list.map((item, index) => {
-    console.log(item)
+    
     return (
       <div key={index} className="mt-5">
         <UserCardPendingRequest item = {item} />
@@ -18,13 +29,73 @@ const PendingRequest = () => {
   if (isLoading) {
     return <p>isLoading</p>;
   }
-  if (error) {
-    console.log(error);
-  }
+  if(error){
+    return(
+      <div>
+    <p>No Data Available</p>
+
+    <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+    <Typography
+      variant="medium"
+      color="blue-gray"
+      className="font-normal"
+    >
+      Page {pageNo + 1}
+    </Typography>
+    <div className="flex gap-2">
+      <Button
+        variant="outlined"
+        size="sm"
+        disabled={pageNo <= 0}
+        onClick={() => setPageNo((a) => a - 1)}
+      >
+        Previous
+      </Button>
+      <Button
+        variant="outlined"
+        size="sm"
+        onClick={nextHandler}
+        disabled={data?.bookings?.length < 10}
+      >
+        Next
+      </Button>
+    </div>
+  </CardFooter>
+  </div>
+  )
+}
   return (
     <>
 
       {renderData}
+
+      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+              <Typography
+                variant="medium"
+                color="blue-gray"
+                className="font-normal"
+              >
+                Page {pageNo + 1}
+              </Typography>
+              <div className="flex gap-2">
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  disabled={pageNo <= 0}
+                  onClick={() => setPageNo((a) => a - 1)}
+                >
+                  Previous
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  onClick={nextHandler}
+                  disabled={data?.list?.length < 10}
+                >
+                  Next
+                </Button>
+              </div>
+            </CardFooter>
     </>
   );
 };

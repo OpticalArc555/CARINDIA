@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AppLayout from "./ui/AppLayout";
@@ -42,8 +43,8 @@ import DealerEdit from "./pages/dealer/DealerEdit";
 import TransactionByAccount from "./pages/transaction/TransactionByAccount";
 import Wallet from "./pages/transaction/Wallet";
 import TransactionController from "./pages/transaction/TransactionController";
-import CardDetailss from "./pages/transaction/CardDetailss";
-
+import EditImage from "./pages/dealer/EditImage";
+// import AdminInspectorInfo from "./pages/adminpages/AdminInspectorInfo";
 
 
 export default function App() {
@@ -76,6 +77,7 @@ export default function App() {
             <Route path="/carverify" element={<CarVerify />} />
             <Route path="/inspector" element={<InspectorList />} />
             <Route path="/CarInspection" element={<CarInspectionTable />} />
+            {/* <Route path="/admin/inspector/info/:ProfileId" element={<AdminInspectorInfo />} /> */}
             <Route
               path="/admin/dealer/info/:id"
               element={<AdminDealerInfo />}
@@ -119,6 +121,7 @@ export default function App() {
               path="/dealer/:id/car/edit/:carId"
               element={<EditDealerCar />}
             />
+            <Route path="/editimage" element={<EditImage />} />
             <Route
               path="/dealer/:id/booking/confirm"
               element={<OrderDealer />}
@@ -142,7 +145,7 @@ export default function App() {
             element={<BiddingDealerPendingReq />}
           />
         </Route>
-           <Route path="/trans" element={<CardDetailss/>}/>
+           {/* <Route path="/trans" element={<CardDetailss/>}/> */}
         <Route element={<AppLayout2 />}>
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/contactus" element={<ContactUs />} />

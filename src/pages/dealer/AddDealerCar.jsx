@@ -16,7 +16,7 @@ const carData = {
     "Ertiga",
     "Alto K10",
     "Dzire",
-    "Wagon R",
+    "WagonR",
     "XL6",
     "Celerio",
     "Jimny",

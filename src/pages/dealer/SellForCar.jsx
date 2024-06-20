@@ -289,7 +289,7 @@ const SellForCar = () => {
   } else {
     dealerApiData = data?.list;
   }
-  console.log(dealerApiData);
+  
   // const data1 = [
   //   {
   //     label: "All Cars",

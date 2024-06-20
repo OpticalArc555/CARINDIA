@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Button, Dialog, DialogBody, DialogFooter, Chip } from "@material-tailwind/react";
 import CardUi from "../../ui/CardUi";
@@ -9,11 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useState } from "react";
 
-const DealerCarPendingRequest = ({ item }) => {
+const DealerCarPendingRequest = ({ item}) => {
  
   const { id } = useParams();
   
-
+console.log(item)
   const [open, setOpen] = useState(false);
  
   const handleOpen = () => setOpen(!open);

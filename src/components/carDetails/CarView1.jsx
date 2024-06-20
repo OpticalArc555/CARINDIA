@@ -127,12 +127,12 @@ const CarView1 = ({ carId }) => {
   };
 
   return (
-    <div className="w-4/5 md:w-full container mt-5 md:mt-20 px-2 md:px-4 lg:px-8">
-      <div className="flex flex-col justify-between">
+    <div className="w-full md:w-full container mt-5 md:mt-20 px-2 md:px-4 lg:px-8">
+      <div className="flex flex-col justify-center">
         <div className="max-w-lg mx-auto mb-5">
           <ChooseCarColor />
         </div>
-        <div className="w-11/12 max-w-xl mx-auto m-5 mb-10 overflow-x-auto scrollbar">
+        <div className="w-full md:max-w-xl md:mx-auto md:m-5 mb-5 md:mb-10 overflow-x-auto">
           <div className="flex space-x-4 justify-between">
             {/* <div
               className="mb-8 p-2 bg-cover bg-center text-white h-20 w-28 rounded-lg cursor-pointer"
@@ -142,7 +142,7 @@ const CarView1 = ({ carId }) => {
               <span className="flex items-center font-bold">IMAGE360</span>
             </div> */}
             <div
-              className="mb-8 p-2 bg-cover bg-center text-white h-12 md:h-20 w-20 md:w-28 rounded-lg cursor-pointer"
+              className="mb-8 p-2 bg-cover bg-center text-white h-12 md:h-20 w-15 md:w-28 rounded-lg cursor-pointer"
               style={{ backgroundImage: `url(${Exterior})` }}
               onClick={() => {
                 setInterior(false);

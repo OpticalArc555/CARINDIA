@@ -11,7 +11,7 @@ const HighestBidAmount = ({bidId}) => {
  const [topThreeBids, setTopThreeBids] = useState([]);
 
     useEffect(() => {
-        const socket = new SockJS('https://cffffftasting-production.up.railway.app/Aucbidding');
+        const socket = new SockJS('https://cf-production.up.railway.app/Aucbidding');
         const stompClient = new Client({
           webSocketFactory: () => socket,
           debug: (str) => {

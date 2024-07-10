@@ -36,7 +36,7 @@ export default function BiddingCarDetailsById1() {
     //   return null
     // }
     useEffect(() => {
-      const socket = new SockJS('https://cffffftasting-production.up.railway.app/Aucbidding');
+      const socket = new SockJS('https://cf-production.up.railway.app/Aucbidding');
       const stompClient = new Client({
         webSocketFactory: () => socket,
         debug: (str) => {

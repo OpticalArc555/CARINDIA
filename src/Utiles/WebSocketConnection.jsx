@@ -17,7 +17,7 @@ export const WebSocketProvider = ({ children }) => {
   const subscriptions = useRef({});
 
   useEffect(() => {
-    const socket = new SockJS('https://cffffftasting-production.up.railway.app/Aucbidding');
+    const socket = new SockJS('https://cf-production.up.railway.app/Aucbidding');
     const stompClient = new Client({
       webSocketFactory: () => socket,
       debug: (str) => {

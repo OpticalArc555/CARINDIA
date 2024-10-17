@@ -27,11 +27,11 @@ function UploadImages3() {
   const { beadingCarId } = useParams();
   // console.log(beadingCarId);
 
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
   const UserID = jwtDecodes?.userId;

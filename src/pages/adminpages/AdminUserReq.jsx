@@ -35,14 +35,14 @@ import { jwtDecode } from "jwt-decode";
 import { FiLoader } from "react-icons/fi";
 
 export default function AdminUserReq() {
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
 
   let jwtDecodes;
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
-  const salesPersonId = toke ? jwtDecodes?.salesPersonId : null;
-  const salesUserId = toke ? jwtDecodes?.userId : null;
+  const salesPersonId = token ? jwtDecodes?.salesPersonId : null;
+  const salesUserId = token ? jwtDecodes?.userId : null;
   const {status} = useParams();
   const [pageNo, setPageNo] = useState(0);
   const [pageSize, setPageSize] = useState(10);

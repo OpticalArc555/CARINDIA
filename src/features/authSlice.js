@@ -7,7 +7,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: initialUser,
-    toke: null, // Retrieve toke from cookies
+    token: null, // Retrieve token from cookies
     isLoading: false,
     error: null,
   },
@@ -16,10 +16,10 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.error = null;
     },
-    settoke: (state, action) => {
+    settoken: (state, action) => {
      
-      state.toke = action.payload;
-      Cookies.set("toke", action.payload); // Save toke to cookies
+      state.token = action.payload;
+      Cookies.set("token", action.payload); // Save token to cookies
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload;
@@ -30,18 +30,18 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       localStorage.removeItem("userInfo"); // Remove user info from local storage
-      Cookies.remove("toke"); // Remove toke from cookies
+      Cookies.remove("token"); // Remove token from cookies
       state.user = null;
-      state.toke = null;
+      state.token = null;
     },
   },
 });
 
-export const { setUser, settoke, setLoading, setError, logout } =
+export const { setUser, settoken, setLoading, setError, logout } =
   authSlice.actions;
 
 export const selectUser = (state) => state.auth.user;
-export const selecttoke = (state) => state.auth.toke;
+export const selecttoken = (state) => state.auth.token;
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 
 export default authSlice.reducer;

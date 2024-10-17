@@ -13,12 +13,12 @@ import { FiLoader } from 'react-icons/fi';
 export function FavoritePage() {
   const dispatch = useDispatch();
   const favoriteCars = useSelector(state => state.favorites.favoriteCars);
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   const [loader , setLoader] = useState(true);
   const navigate = useNavigate();
   let jwtDecodes;
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
   const UserId = jwtDecodes?.userId;
   const {

@@ -24,10 +24,10 @@ const BiddingDealer = () => {
   const {id} = useParams()
   
   
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   let jwtDecodes
-  if(toke){
-     jwtDecodes = jwtDecode(toke);
+  if(token){
+     jwtDecodes = jwtDecode(token);
   }
 
   const userInfo = localStorage.getItem("userInfo");

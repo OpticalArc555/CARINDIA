@@ -28,11 +28,11 @@ const AdminInspectorInfo = () => {
   const { firstName, lastName, mobileNo, email, city, address } =
     inspectorData?.response || {};
 
-  const toke = Cookies.get("toke");
-  const decodedtoke = toke ? jwtDecode(toke) : null;
+  const token = Cookies.get("token");
+  const decodedtoken = token ? jwtDecode(token) : null;
 
-  const InspectorProfileId = decodedtoke?.inspectorProfileId || null;
-  const userRole = decodedtoke?.authorities?.[0] || null;
+  const InspectorProfileId = decodedtoken?.inspectorProfileId || null;
+  const userRole = decodedtoken?.authorities?.[0] || null;
 
   // API hooks
   const [addProfileImages, { isLoading: isAddingImage }] =

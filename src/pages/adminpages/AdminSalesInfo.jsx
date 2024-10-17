@@ -23,17 +23,17 @@ const AdminSalesInfo = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(""); // State to store uploaded image URL
   const fileInputRef = useRef(null); // Create a ref for the file input
 
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
 
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
-  const salesPersonId = toke ? jwtDecodes?.salesPersonId : null;
-  const userRole = toke ? jwtDecodes?.authorities[0] : null;
-  const DealerId = toke ? jwtDecodes?.dealerId : null;
+  const salesPersonId = token ? jwtDecodes?.salesPersonId : null;
+  const userRole = token ? jwtDecodes?.authorities[0] : null;
+  const DealerId = token ? jwtDecodes?.dealerId : null;
   DealerId;
   // console.log(DealerId)
   // console.log(DealerId);

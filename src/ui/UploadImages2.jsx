@@ -25,11 +25,11 @@ function UploadImages2() {
   const [images, setImages] = useState([]);
   const [uploadStatus, setUploadStatus] = useState({});
   const { id ,carId } = useParams();
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
   const UserID = jwtDecodes?.userId;

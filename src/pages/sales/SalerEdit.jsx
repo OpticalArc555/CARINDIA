@@ -13,12 +13,12 @@ import Cookies from "js-cookie";
 import { FiLoader } from 'react-icons/fi'; 
 const SalerEdit = () => {
 
-    const toke = Cookies.get("toke");
+    const token = Cookies.get("token");
     let jwtDecodes
-    if(toke){
-       jwtDecodes = jwtDecode(toke);
+    if(token){
+       jwtDecodes = jwtDecode(token);
     }
-    const salesPersonId = toke ? jwtDecodes?.salesPersonId : null;
+    const salesPersonId = token ? jwtDecodes?.salesPersonId : null;
   const { userid } = useParams();
   const userId = userid;
   const { data, isLoading, isError, error } = useSellerByIdQuery({ userId });

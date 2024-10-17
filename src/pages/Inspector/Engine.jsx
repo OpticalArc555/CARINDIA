@@ -76,13 +76,13 @@ const Engine = ({setCheckstep}) => {
   const [selectfiled, setSelectfiled] = useState("")
   
  
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   let jwtDecodes;
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
-  const userRole = toke ? jwtDecodes?.authorities[0] : null;
+  const userRole = token ? jwtDecodes?.authorities[0] : null;
 
   useEffect(() => {
     // Pre-fill form data and uploaded images based on API data

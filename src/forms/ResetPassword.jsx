@@ -10,7 +10,7 @@ export default function ResetPassword() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const urlParams = new URLSearchParams(window.location.search);
-    const toke = urlParams.get('toke');
+    const token = urlParams.get('token');
      const navigate = useNavigate()
     const [resetPassword] = useResetPasswordMutation()
 
@@ -22,7 +22,7 @@ const handleResetPassword = async (e) => {
       return;
     }
  const emailData = {
-    toke: toke,
+    token: token,
     password: password,
     confirmPassword: confirmPassword,
  }

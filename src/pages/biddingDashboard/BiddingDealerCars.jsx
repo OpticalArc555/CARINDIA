@@ -21,15 +21,15 @@ const BiddingDealerCars = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   let jwtDecodes;
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
   const UserID = jwtDecodes?.userId;
   const dealerId = jwtDecodes?.dealerId;
-  const userRole = toke ? jwtDecodes?.authorities[0] : null;
+  const userRole = token ? jwtDecodes?.authorities[0] : null;
   const [pageNo, setPageNo] = useState(0);
   const [filteredData, setFilteredData] = useState(null);
 

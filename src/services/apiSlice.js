@@ -11,11 +11,11 @@ export const apiSlice = createApi({
     baseUrl: "https://cf-production.up.railway.app",
     prepareHeaders: (headers, { getState }) => {
       // console.log(headers, "prepareHeaders");
-      // console.log(getState().auth.toke);
-      const toke = Cookies.get("toke");
+      // console.log(getState().auth.token);
+      const token = Cookies.get("token");
 
-      if (toke) {
-        headers.set("Authorization", `Bearer ${toke}`);
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },

@@ -57,14 +57,14 @@ export function PremiumCardDefault1({ data, Carid, refetch }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const [favoriteCar] = useFavoriteCarMutation();
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
   const UserId = jwtDecodes?.userId;
-  const userRole = toke ? jwtDecodes?.authorities[0] : null;
+  const userRole = token ? jwtDecodes?.authorities[0] : null;
   const data2 = {
     carId: Carid,
     userId: UserId,

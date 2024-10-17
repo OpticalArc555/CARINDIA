@@ -20,15 +20,15 @@ const UserInfo = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(""); // State to store uploaded image URL
   const fileInputRef = useRef(null);
 
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
 
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
-  const userProfileId = toke ? jwtDecodes?.userProfileId : null;
-  const userId = toke ? jwtDecodes?.userId : null;
+  const userProfileId = token ? jwtDecodes?.userProfileId : null;
+  const userId = token ? jwtDecodes?.userId : null;
 
   const { data } = useGetUserByIdQuery(userProfileId);
   console.log(data);

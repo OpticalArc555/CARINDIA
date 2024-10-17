@@ -12,17 +12,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
 export function ChangePassword() {
-const toke  =  Cookies.get("toke")
+const token  =  Cookies.get("token")
 
 let jwtDecodes;
 
-if (toke)
+if (token)
   {
-    jwtDecodes =jwtDecode(toke)
+    jwtDecodes =jwtDecode(token)
 }
 
 const navigate = useNavigate()
-const dealerId = toke ? jwtDecodes?.dealerId:null
+const dealerId = token ? jwtDecodes?.dealerId:null
 
   const [showPassword, setShowPassword] = useState(false);
   const [formStateData, setFormData] = useState({

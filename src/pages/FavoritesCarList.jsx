@@ -5,10 +5,10 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 export const FavoritesCarList = () => {
-    const toke = Cookies.get("toke");
+    const token = Cookies.get("token");
     let jwtDecodes;
-    if (toke) {
-      jwtDecodes = jwtDecode(toke);
+    if (token) {
+      jwtDecodes = jwtDecode(token);
     }
     const UserId = jwtDecodes?.userId;
 

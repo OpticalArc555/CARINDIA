@@ -6,9 +6,9 @@ import {  Outlet } from 'react-router-dom'
 function AppLayout2() {
 
     // const location = useLocation()
-    const toke = Cookies.get('toke')
-    toke;
-    // console.log(toke)
+    const token = Cookies.get('token')
+    token;
+    // console.log(token)
 
     return (
         <div>

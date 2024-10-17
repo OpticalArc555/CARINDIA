@@ -38,12 +38,12 @@ const emptyImage = "..\\..\\cars\\emptyfolder.png";
 
 export default function B2BSeller() {
     const { status } = useParams();
-    const toke = Cookies.get("toke");
+    const token = Cookies.get("token");
     let jwtDecodes;
-    if (toke) {
-      jwtDecodes = jwtDecode(toke);
+    if (token) {
+      jwtDecodes = jwtDecode(token);
     }
-    const salesPersonId = toke ? jwtDecodes?.salesPersonId : null;
+    const salesPersonId = token ? jwtDecodes?.salesPersonId : null;
     const [filteredData, setFilteredData] = useState([]);
     const [pageNo, setPageNo] = useState(0);
     const [pageSize, setPageSize] = useState(10);
@@ -70,7 +70,7 @@ export default function B2BSeller() {
   
     const navigate = useNavigate();
     if (error?.status === 401) {
-      Cookies.remove("toke");
+      Cookies.remove("token");
       navigate("/signin");
     }
   

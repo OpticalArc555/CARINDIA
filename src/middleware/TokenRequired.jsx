@@ -1,6 +1,6 @@
 
 
-const tokeRequired = () => {
+const tokenRequired = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const tokeRequired = () => {
   )
 }
 
-export default tokeRequired
+export default tokenRequired

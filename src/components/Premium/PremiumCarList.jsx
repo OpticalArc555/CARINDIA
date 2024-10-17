@@ -16,7 +16,7 @@ import FilterPremiumCars1 from "../buyCar/FilterPremiumCars1";
 
 const PremiumCarList = () => {
   const dispatch = useDispatch();
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
   const [urlState, setUrllState] = useState(null);
 
   const emptyImage = "..\\..\\cars\\emptyfolder.png";
@@ -24,8 +24,8 @@ const PremiumCarList = () => {
   const { data, isLoading, error, refetch } =
     useFilterCarPremiumQuery(urlState);
   let jwtDecodes;
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
   const UserId = jwtDecodes?.userId;
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const PremiumCarList = () => {
   }, [dispatch, UserId]);
 
   if (error?.status === 401) {
-    Cookies.remove("toke");
+    Cookies.remove("token");
     navigate("/signin");
   }
   if (isLoading) {

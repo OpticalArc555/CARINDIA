@@ -15,11 +15,11 @@ export default function Engine() {
   // eslint-disable-next-line no-unused-vars
   // const navigate = useNavigate();
   const { id } = useParams();
-  const toke = Cookies.get('toke');
+  const token = Cookies.get('token');
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
   const UserID = jwtDecodes?.userId;

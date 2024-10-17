@@ -21,15 +21,15 @@ export function AddDealerFormSales({refetch}) {
   const handleOpen = () => setOpen(!open);
   const [SignUp] = useSignUpMutation();
 
-  const toke = Cookies.get("toke");
+  const token = Cookies.get("token");
 
   let jwtDecodes;
 
-  if (toke) {
-    jwtDecodes = jwtDecode(toke);
+  if (token) {
+    jwtDecodes = jwtDecode(token);
   }
 
-  const userid = toke ? jwtDecodes?.userId : null;
+  const userid = token ? jwtDecodes?.userId : null;
   // console.log("userid", userid);
 
 

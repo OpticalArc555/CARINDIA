@@ -14,9 +14,9 @@ export const setFavoriteCars = (cars) => (
 export const fetchFavoriteCars = createAsyncThunk(
   'favorites/fetchFavoriteCars',
   async (UserId) => {
-    const toke = Cookies.get("toke");
+    const token = Cookies.get("token");
     const headers = {
-      'Authorization': `Bearer ${toke}`,
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     };
 

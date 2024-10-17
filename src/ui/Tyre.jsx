@@ -15,11 +15,11 @@ export default function Tyre() {
   // eslint-disable-next-line no-unused-vars
   // const navigate = useNavigate();
   const { id } = useParams();
-  const token = Cookies.get('token');
+  const toke = Cookies.get('toke');
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
   const UserID = jwtDecodes?.userId;

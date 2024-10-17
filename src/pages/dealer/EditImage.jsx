@@ -22,11 +22,11 @@ const EditImage = () => {
   const [addCarImages] = useAddCarImagesMutation();
   const [uploadStatus, setUploadStatus] = useState({}); 
 
-  const token = Cookies.get('token');
+  const toke = Cookies.get('toke');
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
   const UserID = jwtDecodes?.userId;

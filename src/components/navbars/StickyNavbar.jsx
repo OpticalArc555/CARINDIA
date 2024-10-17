@@ -28,26 +28,26 @@ import cartechlogo2 from "/cars/cartechlogo2.png";
 export function StickyNavbar() {
   const [openNav, setOpenNav] = useState(false);
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
-  const userRole = token ? jwtDecodes?.authorities[0] : null;
+  const userRole = toke ? jwtDecodes?.authorities[0] : null;
 
   // eslint-disable-next-line no-unused-vars
 
-  const DealerId = token ? jwtDecodes?.dealerId : null;
-  // const userid = token ? jwtDecodes?.userId : null;
-  const InspectorProfileId = token ? jwtDecodes?.inspectorProfileId : null;
+  const DealerId = toke ? jwtDecodes?.dealerId : null;
+  // const userid = toke ? jwtDecodes?.userId : null;
+  const InspectorProfileId = toke ? jwtDecodes?.inspectorProfileId : null;
 
-  const salesPersonId = token ? jwtDecodes?.salesPersonId : null;
+  const salesPersonId = toke ? jwtDecodes?.salesPersonId : null;
 
-  const UserId = token ? jwtDecodes?.userId : null;
-  const userProfileId = token ? jwtDecodes?.userProfileId : null;
+  const UserId = toke ? jwtDecodes?.userId : null;
+  const userProfileId = toke ? jwtDecodes?.userProfileId : null;
 
   const location = useLocation();
 
@@ -720,7 +720,7 @@ function ConfermListMenu() {
           <div className="mr-4 hidden lg:block">{navList}</div>
 
           <div className="flex items-center gap-x-1">
-            {token ? (
+            {toke ? (
               <Profile
                 userId={UserId}
                 dealer_id={DealerId}
@@ -797,7 +797,7 @@ function ConfermListMenu() {
 
       <Collapse open={openNav}>
         {navList}
-        {token ? null : (
+        {toke ? null : (
           <div className="flex items-center gap-x-1">
             <Link to="/signin">
               <Button fullWidth variant="text" size="sm" className="">

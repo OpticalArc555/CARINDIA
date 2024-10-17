@@ -32,14 +32,14 @@ export default function ShowIntrestDailog() {
     setOpen(!open);
   };
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
-  const DealerId = token ? jwtDecodes?.dealerId : null;
+  const DealerId = toke ? jwtDecodes?.dealerId : null;
   console.log(DealerId);
 
   useEffect(() => {

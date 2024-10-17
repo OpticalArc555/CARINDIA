@@ -25,18 +25,18 @@ const AdminDealerInfo = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(""); // State to store uploaded image URL
   const fileInputRef = useRef(null); // Create a ref for the file input
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
-  const DealerId = token ? jwtDecodes?.dealerId : null;
-  const userId = token ? jwtDecodes?.userId : null;
+  const DealerId = toke ? jwtDecodes?.dealerId : null;
+  const userId = toke ? jwtDecodes?.userId : null;
 
-  const userRole = token ? jwtDecodes?.authorities[0] : null;
+  const userRole = toke ? jwtDecodes?.authorities[0] : null;
 
   const { data, isLoading, isError, error } = useGetDealerQuery({ id });
   console.log(data);

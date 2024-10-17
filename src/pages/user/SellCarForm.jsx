@@ -34,14 +34,14 @@ dayjs.extend(duration);
 export default function SellCarForm() {
   const navigate = useNavigate();
   const [UserSellForm] = useUserSellFormMutation();
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
-  const userid = token ? jwtDecodes?.userId : null;
+  const userid = toke ? jwtDecodes?.userId : null;
   // Form state
   const [formData, setFormData] = useState({
     carOwnerName: "",

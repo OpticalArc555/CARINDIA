@@ -11,11 +11,11 @@ export const apiSlice = createApi({
     baseUrl: "https://cf-production.up.railway.app",
     prepareHeaders: (headers, { getState }) => {
       // console.log(headers, "prepareHeaders");
-      // console.log(getState().auth.token);
-      const token = Cookies.get("token");
+      // console.log(getState().auth.toke);
+      const toke = Cookies.get("toke");
 
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
+      if (toke) {
+        headers.set("Authorization", `Bearer ${toke}`);
       }
       return headers;
     },
@@ -23,16 +23,6 @@ export const apiSlice = createApi({
 
   tagTypes: ["User", "Admin", "Dealer", "CAR", "DEALERBOOKING" ,"Inspector","SALESPERSON","Favorite"],
   endpoints: (builder) => ({}),
-  // onError: async (error) => {
-  //   if (error.status === 401) { // Unauthorized error
-  //     // Redirect to sign-in page
-  //     redirectToSignIn();
-  //   }
-  // }
 });
 
-// Define a custom function to handle redirection
-// export const redirectToSignIn = (navigate) => {
 
-//   navigate('/signin'); // Redirect to the sign-in page using the navigate function passed as a parameter
-// };

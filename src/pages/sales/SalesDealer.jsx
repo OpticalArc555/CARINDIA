@@ -32,20 +32,20 @@ export default function SalesDealer() {
   const [open, setOpen] = useState(false);
   const [deleteid, setDeleteid] = useState();
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
-const userid = token ? jwtDecodes?.userId : null;
+const userid = toke ? jwtDecodes?.userId : null;
 
 const { data, isLoading, error ,refetch } = useGetDealerbySalesQuery(salePersonId !== undefined ? salePersonId: userid);
 
 
-const userRole = token ? jwtDecodes?.authorities[0] : null;
+const userRole = toke ? jwtDecodes?.authorities[0] : null;
 
 
   

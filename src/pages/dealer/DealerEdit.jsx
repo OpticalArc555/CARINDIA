@@ -16,13 +16,13 @@ const DealerEdit = () => {
   const { id } = useParams();
   const { data: dealerID } = useGetDealerQuery({ id });
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
-  const userid = token ? jwtDecodes?.userId : null;
+  const userid = toke ? jwtDecodes?.userId : null;
 
   const [getEditDealer] = useGetEditDealerMutation(userid);
   const [inputField, setInputField] = React.useState({

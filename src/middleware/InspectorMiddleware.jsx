@@ -8,15 +8,15 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 const InspectorMiddleware = ({ allowedRoles }) => {
   const location = useLocation();
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
     
   }
 
-  const userRole = token ? jwtDecodes.authorities[0] : null;
+  const userRole = toke ? jwtDecodes.authorities[0] : null;
   
   useEffect(() => {
     if (!allowedRoles.includes(userRole)) {

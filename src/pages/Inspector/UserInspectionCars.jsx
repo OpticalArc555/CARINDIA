@@ -28,12 +28,12 @@ import { jwtDecode } from "jwt-decode";
 import { useListbyInspectorIdQuery } from "../../services/userAPI";
 
 export default function UserInspectionCars() {
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
-  const UserId = token ? jwtDecodes?.userId : null;
+  const UserId = toke ? jwtDecodes?.userId : null;
   const itemsPerPage = 10;
   const [pageNo, setPageNo] = useState(0);
 

@@ -11,14 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 const ImportantDocuments = ({inspData}) => {
 const navigate = useNavigate()
  console.log(inspData)
-const token = Cookies.get("token");
+const toke = Cookies.get("toke");
 let jwtDecodes;
-if (token) {
-  jwtDecodes = jwtDecode(token);
+if (toke) {
+  jwtDecodes = jwtDecode(toke);
 }
 const {beadingCarId} = useParams()
 
-const UserId = token ? jwtDecodes?.userId : null;
+const UserId = toke ? jwtDecodes?.userId : null;
 
 const [formData, setFormData] = useState({
   rcAvailability: "",

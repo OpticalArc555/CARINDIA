@@ -19,7 +19,7 @@ export default function DialogBox({ price, dealer_id, carId ,handleBuyCar}) {
   const [open, setOpen] = React.useState(false);
   // console.log(dealer_id);
   const [inputForm, setInoutForm] = useState("");
-  const cookie = Cookies.get("token");
+  const cookie = Cookies.get("toke");
   // console.log(cookie)
   const handleOpen = () =>{
 if(cookie){

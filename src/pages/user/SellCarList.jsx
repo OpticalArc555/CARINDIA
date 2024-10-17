@@ -24,12 +24,12 @@ import { jwtDecode } from "jwt-decode";
 export default function AdminUserReq() {
   const [pageNo, setPageNo] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if(token){
-    jwtDecodes = jwtDecode(token) 
+  if(toke){
+    jwtDecodes = jwtDecode(toke) 
   }
-const userId = token ? jwtDecodes?.userId : null;
+const userId = toke ? jwtDecodes?.userId : null;
 const {data,error, isLoading , refetch } = useListCarSellQuery(userId);
   const navigate = useNavigate();
   useEffect(() => {

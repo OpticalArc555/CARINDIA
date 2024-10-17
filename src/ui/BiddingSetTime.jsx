@@ -24,12 +24,12 @@ const TIME_ZONE = "Asia/Kolkata";
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
 export default function BiddingSetTime({ userid, biddingcarid }) {
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
-  const UserId = token ? jwtDecodes?.userId : null;
+  const UserId = toke ? jwtDecodes?.userId : null;
 
   const [open, setOpen] = useState(false);
   const [basePriceError, setBasePriceError] = useState("");

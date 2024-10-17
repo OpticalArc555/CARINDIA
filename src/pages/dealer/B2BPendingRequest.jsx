@@ -14,10 +14,10 @@ import Cookies from "js-cookie";
 const B2BPendingRequest = () => {
 
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 const id = jwtDecodes?.dealerId;
 // console.log(id)

@@ -74,13 +74,13 @@ const Electrical = ({ setCheckstep }) => {
     InteriorParkingSensors: null,
     Electricalwirings: null,
   });
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
-  const userRole = token ? jwtDecodes?.authorities[0] : null;
+  const userRole = toke ? jwtDecodes?.authorities[0] : null;
 
   const [addBiddingCarWithoutImage] = useAddBiddingCarWithoutImageMutation();
   const [openModal, setOpenModal] = useState(false);

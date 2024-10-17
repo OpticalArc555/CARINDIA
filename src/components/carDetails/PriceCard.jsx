@@ -35,7 +35,7 @@ const PriceCard = ({
   handleBuyCar,
   transmission,
 }) => {
-  const cookie = Cookies.get("token");
+  const cookie = Cookies.get("toke");
   const jwtDecodes = cookie ? jwtDecode(cookie) : null;
 
   const userRole = jwtDecodes?.authorities[0];

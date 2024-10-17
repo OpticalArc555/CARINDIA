@@ -32,12 +32,12 @@ import ApexCharts from 'react-apexcharts';
 import { jwtDecode } from "jwt-decode";
 
 export default function CarListing() {
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
-  const UserId = token ? jwtDecodes?.userId : null;
+  const UserId = toke ? jwtDecodes?.userId : null;
 
   const { data, error, isLoading } = useBiddingCarByDealerIdQuery(UserId);
   const activeCarsData = data?.filter(car => car?.carStatus === "ACTIVE");

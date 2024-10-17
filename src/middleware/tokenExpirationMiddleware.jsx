@@ -1,7 +1,7 @@
 import { apiSlice } from '../services/apiSlice';
 import { useNavigate } from 'react-router-dom';
 
-const tokenExpirationMiddleware = () => (next) => async (action) => {
+const tokeExpirationMiddleware = () => (next) => async (action) => {
  console.log(action)
 // console.log(action.type.startsWith(apiSlice.reducerPath))
 if(action?.payload?.status && action.error){
@@ -25,4 +25,4 @@ if(action?.payload?.status && action.error){
   return next(action);
 };
 
-export default tokenExpirationMiddleware;
+export default tokeExpirationMiddleware;

@@ -13,15 +13,15 @@ import { FiLoader } from 'react-icons/fi';
 
 const BuyCar = () => {
   const dispatch = useDispatch();
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   const [urlState, setUrllState] = useState(null);
 
   const emptyImage = "..\\..\\cars\\emptyfolder.png";
 
   const { data, isLoading, error, refetch } = useFilterCarQuery(urlState);
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
   const UserId = jwtDecodes?.userId;
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const BuyCar = () => {
 
 
   if (error?.status === 401) {
-    Cookies.remove("token");
+    Cookies.remove("toke");
     navigate("/signin");
   }
   if (isLoading) {

@@ -37,10 +37,10 @@ const OrderDealerB2B = () => {
   const [pageNo, setPageNo] = useState(0);
   const [revertId, setRevertId] = useState("");
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
   const id = jwtDecodes?.dealerId;
   // console.log(id);

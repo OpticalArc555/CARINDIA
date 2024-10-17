@@ -110,12 +110,12 @@ const SellForCarPremium = () => {
   const [carUpdate] = useCarUpdateMutation(deactivateId);
   const [selectedOption, setSelectedOption] = useState(false);
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
 
   let jwtDecodes;
 
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
   const handleFilterCars = (data) => {
@@ -165,7 +165,7 @@ const SellForCarPremium = () => {
     }
   };
 
-  const userRole = token ? jwtDecodes?.authorities[0] : null;
+  const userRole = toke ? jwtDecodes?.authorities[0] : null;
 
   const handleOpenDeactivate = (carId) => {
     setOpenDeactivate(!openDeactivate);

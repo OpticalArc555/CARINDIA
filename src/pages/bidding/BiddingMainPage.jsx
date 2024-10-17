@@ -21,7 +21,7 @@ const BiddingMainPage = () => {
   }
 
   // if (error?.status == 401) {
-  //   Cookies.remove("token");
+  //   Cookies.remove("toke");
   //   navigate("/signin");
   // }
   return (

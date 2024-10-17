@@ -20,10 +20,10 @@ import { useLazyGetDealerByUserIdQuery } from "../../services/dealerAPI";
 import { Link } from "react-router-dom";
 import { FiLoader } from "react-icons/fi";
 const WinnerSection = () => {
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
   const emptyImage = "..\\..\\cars\\emptyfolder.png";

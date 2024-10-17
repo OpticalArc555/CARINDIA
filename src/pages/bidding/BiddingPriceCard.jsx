@@ -29,13 +29,13 @@ const BiddingPriceCard = ({
   biddingTimerStatus,
   price
 }) => {
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
   const userRole = jwtDecodes?.authorities[0];
-  const UserId = token ? jwtDecodes?.userId : null;
+  const UserId = toke ? jwtDecodes?.userId : null;
   const {page , timerId ,status} = useParams()
   const {data} = useGetbeadingGetByIdQuery(beadingCarId);
   const { isConnected, topThreeBidsAmount } = useWebSocket();

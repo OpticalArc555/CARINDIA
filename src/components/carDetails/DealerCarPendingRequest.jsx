@@ -27,10 +27,10 @@ const DealerCarPendingRequest = ({ item, refetch }) => {
 
   const navigate = useNavigate();
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
   const UserID = jwtDecodes?.userId;

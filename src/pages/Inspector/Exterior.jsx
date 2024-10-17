@@ -209,13 +209,13 @@ const [formData, setFormData] = useState({
   const [lables, setLables] = useState("");
   const [selectfiled, setSelectfiled] = useState("")
 
-  const token = Cookies.get("token");
+  const toke = Cookies.get("toke");
   let jwtDecodes;
-  if (token) {
-    jwtDecodes = jwtDecode(token);
+  if (toke) {
+    jwtDecodes = jwtDecode(toke);
   }
 
-  const userRole = token ? jwtDecodes?.authorities[0] : null;
+  const userRole = toke ? jwtDecodes?.authorities[0] : null;
 
 
   const handleFileChange = async (event, fieldName, imgPreview = "") => {

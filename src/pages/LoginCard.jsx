@@ -12,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useSignInMutation } from "../services/authAPI";
-import { setToken } from "../features/authSlice";
+import { settoke } from "../features/authSlice";
 import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
@@ -55,7 +55,7 @@ export function LoginCard() {
         setTimeout(() => {
           navigate("/");
         }, 1000); 
-        dispatch(setToken(data));
+        dispatch(settoke(data));
       } else {
         if(error.status === 401){
           toast.error(error.data.message);

@@ -287,7 +287,7 @@ export default function App() {
               path="/dealer/:carId/:id/editimage"
               element={<EditImage />}
             />
-            <Route
+             <Route
               path="/dealer/:id/booking/confirm"
               element={<OrderDealer />}
             />
